@@ -6,13 +6,13 @@ class Link extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      id: Math.random() * 100000,
+      href: props.href,
       willReceivePropsCount: 0
     }
   }
   componentWillReceiveProps({href}) {
     let hrefError
-    if (this.props.href != href) hrefError = href + '!=' + this.props.href
+    if (this.state.href != href) hrefError = 'props.href: "' + href + '" should have this state.href: "' + this.state.href + '"'
     this.setState(({willReceivePropsCount}) => {
       let state = {willReceivePropsCount: ++willReceivePropsCount}
       if(hrefError) state.error = hrefError

@@ -9,8 +9,8 @@ process.env.NODE_ENV = getenv.string('NODE_ENV', 'development')
 
 const webpack = require('webpack')
 const preactLink = require('../preact.webpack.config.js')
-// const reactLink = require('../react.webpack.config.js')
+const reactLink = require('../react.webpack.config.js')
 
-module.exports = webpack(preactLink)
+// module.exports = webpack(preactLink)
 // module.exports = webpack(reactLink)
-// module.exports = webpack([preactLink, reactLink])
+module.exports = webpack([preactLink, reactLink])
