@@ -12,7 +12,7 @@ class Link extends Component {
   }
   componentWillReceiveProps({href}) {
     let hrefError
-    if (this.state.href != href) hrefError = 'props.href: "' + href + '" should have this state.href: "' + this.state.href + '"'
+    if (this.state.href != href) hrefError = 'ERROR'
     this.setState(({willReceivePropsCount}) => {
       let state = {willReceivePropsCount: ++willReceivePropsCount}
       if(hrefError) state.error = hrefError
@@ -24,8 +24,9 @@ class Link extends Component {
       <a style={{display: 'block'}} href={href}>
         {error &&
           <span>{error}</span>
-        }
-        {children}
+        }<br/>
+        prop.href: {href} <br/>
+        state.href: {this.state.href}
       </a>
     )
   }
@@ -55,11 +56,11 @@ class App extends Component {
         <div>
           <h1>Form</h1>
           <button style={{display: 'block'}} onClick={this.handleClick}>init test</button>
-          <Link href="/link-1">link #1</Link>
+          <Link href="/link-1"></Link>
         </div>
         <div>
-          <Link href="/link-2">link #2a</Link>
-          <Link href="/link-2">link #2b</Link>
+          <Link href="/link-2"></Link>
+          <Link href="/link-3"></Link>
         </div>
       </div>
     )
