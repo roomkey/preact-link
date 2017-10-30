@@ -1,7 +1,10 @@
 import {h, Component, render} from 'preact'
 
+let linkNumber = 0
+
 class Link extends Component {
   constructor(props) {
+    props.key = props.key || (++linkNumber) + '-link-component'
     super(props)
     this.state = {
       id: Math.random() * 100000,
@@ -19,7 +22,7 @@ class Link extends Component {
   }
   render({href, children}, {error}) {
     return (
-      <a class="link" href={href}>
+      <a style={{display: 'block'}} href={href}>
         {error &&
           <span>{error}</span>
         }
@@ -52,7 +55,7 @@ class App extends Component {
         }
         <div>
           <h1>Form</h1>
-          <button onClick={this.handleClick}>init test</button>
+          <button style={{display: 'block'}} onClick={this.handleClick}>init test</button>
           <Link href="/link-1">link #1</Link>
         </div>
         <div>

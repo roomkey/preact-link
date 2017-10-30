@@ -1,8 +1,7 @@
-import {h} from 'preact'
-import React, {Component} from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 
-class Link extends Component {
+class Link extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -10,7 +9,7 @@ class Link extends Component {
       willReceivePropsCount: 0
     }
   }
-  componentWillReceiveProps({href}) {
+  componentComponentWillReceiveProps({href}) {
     let hrefError
     if (this.props.href != href) hrefError = href + '!=' + this.props.href
     this.setState(({willReceivePropsCount}) => {
@@ -19,10 +18,11 @@ class Link extends Component {
       return state
     })
   }
-  render({href, children}) {
-    const {error} = this.state
+  render() {
+    const {href, children} = this.props,
+          {error} = this.state
     return (
-      <a class="link" href={href}>
+      <a style={{display: 'block'}} href={href}>
         {error &&
           <span>{error}</span>
         }
@@ -32,7 +32,7 @@ class Link extends Component {
   }
 }
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -47,7 +47,7 @@ class App extends Component {
       message: 'test #' + clickCount
     }))
   }
-  render(props) {
+  render() {
     const {message} = this.state
     return (
       <div>
@@ -56,7 +56,7 @@ class App extends Component {
         }
         <div>
           <h1>Form</h1>
-          <a onClick={this.handleClick}>init test</a>
+          <button style={{display: 'block'}} onClick={this.handleClick}>init test</button>
           <Link href="/link-1">link #1</Link>
         </div>
         <div>

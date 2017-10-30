@@ -21,8 +21,7 @@ const filename = PROD ? '[name].min.js' : '[name].js'
 const config = {
   context: path.resolve(__dirname, 'src'),
   entry: {
-    preact: './preact.js',
-    react: './react.js'
+    preact: './preact.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -44,20 +43,7 @@ const config = {
         options: {
           cacheDirectory: true,
           sourceMaps: true,
-          presets: [
-            ['es2015', { loose: true }],
-            'stage-0'
-          ],
-          plugins: [
-            'add-module-exports',
-            'transform-runtime',
-            [
-              'transform-es2015-modules-commonjs-simple',
-              {noMangle: true}
-            ],
-            ['transform-decorators-legacy'],
-            ['transform-react-jsx', { 'pragma': 'h' }]
-          ]
+          presets: ['env', 'preact']
         }
       }
     // }, {
@@ -79,12 +65,6 @@ const config = {
       chunks: ['preact'],
       template: './index.html',
       filename: 'preact.html'
-    }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      chunks: ['react'],
-      template: './index.html',
-      filename: 'react.html'
     })
   ],
 
