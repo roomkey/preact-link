@@ -4,7 +4,6 @@ let linkNumber = 0
 
 class Link extends Component {
   constructor(props) {
-    props.key = props.key || (++linkNumber) + '-link-component'
     super(props)
     this.state = {
       id: Math.random() * 100000,
